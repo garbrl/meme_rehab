@@ -1,8 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { GetUsers } from './firebase/users.js';
+import { GetGame } from './firebase/games.js';
 
 console.log(GetUsers());
+console.log(GetGame("AAA"));
 
 export default function App() {
   return (
