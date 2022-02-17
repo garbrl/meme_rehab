@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Pressable, Text, TextInput, TouchableOpacity, View } from "react-native-web";
+import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
+import { Button, Pressable, TextInput, TouchableOpacity, View } from "react-native-web";
 
 export function Home({game, handleGame}) {
     const [gameInput, setGameInput] = useState("");
