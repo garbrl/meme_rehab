@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
-import { Button, Pressable, TextInput, TouchableOpacity, View } from "react-native-web";
+import { Input, Layout, Text } from '@ui-kitten/components';
+import { Button, Pressable, TextInput, StyleSheet, View } from "react-native-web";
 
 export function Home({game, handleGame}) {
     const [gameInput, setGameInput] = useState("");
@@ -12,18 +12,28 @@ export function Home({game, handleGame}) {
 
     return (
         !(game.created_by) ?
-            <View>
+            <Layout>
                 <Text>
                     Create a game or join a game
                 </Text>
-                <TextInput 
-                    placeholder="room code" 
-                    onChangeText={ code => setGameInput(code)} 
+                <Input
+                    style={styles.input}
+                    // status='danger'
+                    placeholder='enter game code'
+                    value={gameInput}
+                    onChangeText={setGameInput}
                 />
                 <Button onPress={handleSubmit}>Join</Button>
-            </View>
+            </Layout>
             : <div>
                 Joined game - created by {game.created_by}
             </div>
     );
 }
+
+const styles = StyleSheet.create({
+    input: {
+      flex: 1,
+      margin: 2,
+    }
+  });
