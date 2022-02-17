@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Text, TextInput, TouchableOpacity } from "react-native-web";
+import { Button, Pressable, Text, TextInput, TouchableOpacity, View } from "react-native-web";
 
 export function Home({game, handleGame}) {
     const [gameInput, setGameInput] = useState("");
@@ -11,7 +11,7 @@ export function Home({game, handleGame}) {
 
     return (
         !(game.created_by) ?
-            <div>
+            <View>
                 <Text>
                     Create a game or join a game
                 </Text>
@@ -19,11 +19,8 @@ export function Home({game, handleGame}) {
                     placeholder="room code" 
                     onChangeText={ code => setGameInput(code)} 
                 />
-                <TouchableOpacity onPress={handleSubmit}>
-                    <Text>Join</Text>
-                </TouchableOpacity>
-                
-            </div>
+                <Button onPress={handleSubmit}>Join</Button>
+            </View>
             : <div>
                 Joined game - created by {game.created_by}
             </div>
