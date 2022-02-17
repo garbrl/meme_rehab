@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Input, Layout, Text } from '@ui-kitten/components';
-import { Button, Pressable, TextInput, StyleSheet, View } from "react-native-web";
+import { Card, Button, Input, Layout, Text } from '@ui-kitten/components';
+import { Pressable, TextInput, StyleSheet, View } from "react-native-web";
 
 export function Home({game, handleGame}) {
     const [gameInput, setGameInput] = useState("");
@@ -12,7 +12,7 @@ export function Home({game, handleGame}) {
 
     return (
         !(game.created_by) ?
-            <Layout>
+            <Card style={styles.card}>
                 <Text category="h1">
                     Create or join a game
                 </Text>
@@ -24,16 +24,20 @@ export function Home({game, handleGame}) {
                     onChangeText={setGameInput}
                 />
                 <Button onPress={handleSubmit}>Join</Button>
-            </Layout>
-            : <div>
+            </Card>
+            : <Card style={styles.card}>
                 Joined game - created by {game.created_by}
-            </div>
+            </Card>
     );
 }
 
 const styles = StyleSheet.create({
     input: {
-      flex: 1,
-      margin: 2,
+        flex: 1,
+        margin: 2
+    },
+    card: {
+        textAlign: "center",
+        margin: 20
     }
   });
