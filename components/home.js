@@ -13,8 +13,8 @@ export function Home({game, handleGame}) {
     return (
         !(game.created_by) ?
             <Layout>
-                <Text>
-                    Create a game or join a game
+                <Text category="h1">
+                    Create or join a game
                 </Text>
                 <Input
                     style={styles.input}
