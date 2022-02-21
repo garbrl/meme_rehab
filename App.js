@@ -6,20 +6,20 @@ import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
 
 import { Home } from './components/home.js';
 import { GetUsers } from './firebase/users.js';
-import { GetGame } from './firebase/games.js';
+import { GetRoom } from './firebase/rooms.js';
 
 console.log(GetUsers());
 
 export default function App() {
-  const [game, setGame] = useState({});
+  const [room, setRoom] = useState({});
 
-  const handleGame = (code) => {
+  const handleRoom = (code) => {
     if (code === "") return false;
     
-    GetGame(code).then(newGame => {
-      console.log("just waited", newGame);
-      if(newGame.created_by) {
-        setGame(newGame);
+    GetRoom(code).then(newRoom => {
+      console.log("just waited", newRoom);
+      if(newRoom.created_by) {
+        setRoom(newRoom);
         return true;
       } else {
         return false;
@@ -27,15 +27,15 @@ export default function App() {
     })
   }
 
-  useEffect(() => console.log("game", game), [game]);
+  useEffect(() => console.log("room", room), [room]);
 
   return (
     <ApplicationProvider {...eva} theme={eva.light}>
-      <Home game={game} handleGame={handleGame} />
-      <View style={styles.container}>
+      <Home room={room} handleRoom={handleRoom} />
+      <Layout style={styles.container}>
         <Text>Open up App.js to start working on your app!</Text>
         <StatusBar style="auto" />
-      </View>
+      </Layout>
     </ApplicationProvider>
   );
 }

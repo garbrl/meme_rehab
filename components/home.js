@@ -2,31 +2,31 @@ import React, { useState } from 'react';
 import { Card, Button, Input, Layout, Text } from '@ui-kitten/components';
 import { Pressable, TextInput, StyleSheet, View } from "react-native-web";
 
-export function Home({game, handleGame}) {
-    const [gameInput, setGameInput] = useState("");
+export function Home({room, handleRoom}) {
+    const [roomInput, setRoomInput] = useState("");
 
     const handleSubmit = () => {
         console.log("submit clicked");
-        handleGame(gameInput);
+        handleRoom(roomInput);
     }
 
     return (
-        !(game.created_by) ?
+        !(room.created_by) ?
             <Card style={styles.card}>
                 <Text category="h1">
-                    Create or join a game
+                    Create or join a room
                 </Text>
                 <Input
                     style={styles.input}
                     // status='danger'
-                    placeholder='enter game code'
-                    value={gameInput}
-                    onChangeText={setGameInput}
+                    placeholder='enter room code'
+                    value={roomInput}
+                    onChangeText={setRoomInput}
                 />
                 <Button onPress={handleSubmit}>Join</Button>
             </Card>
             : <Card style={styles.card}>
-                Joined game - created by {game.created_by}
+                Joined room - created by {room.created_by}
             </Card>
     );
 }
