@@ -1,36 +1,36 @@
 import React, { useState } from 'react';
 import { Card, Button, Input, Layout, Text } from '@ui-kitten/components';
 import { Pressable, TextInput, StyleSheet, View } from "react-native-web";
-import { SignUp } from './users/sign_up';
+import { CurrentUser } from '../../firebase/auth_state_listener';
+import { AnonSignUp } from '../../firebase/auth_anon_sign_in';
 
-export function Home({room, handleRoom}) {
-    const [roomInput, setRoomInput] = useState("");
+export function SignUp() {
+    const [usernameInput, setUsernameInput] = useState("");
 
     const handleSubmit = () => {
-        console.log("submit clicked");
-        handleRoom(roomInput);
+        console.log("sign up clicked");
+        AnonSignUp().then(result => {
+            console.log("anonymous authentication succeeded? ", result);
+        })
     }
 
     return (
-        !(room.created_by) ?
-            <Layout>
-            <SignUp />
+        !(CurrentUser.uid) ?
             <Card style={styles.card}>
                 <Text category="h1">
-                    Create or join a room
+                    Reveal yourself!
                 </Text>
                 <Input
                     style={styles.input}
                     // status='danger'
-                    placeholder='enter room code'
-                    value={roomInput}
-                    onChangeText={setRoomInput}
+                    placeholder='enter name'
+                    value={usernameInput}
+                    onChangeText={setUsernameInput}
                 />
-                <Button onPress={handleSubmit}>Join</Button>
+                <Button onPress={handleSubmit}>Submit name</Button>
             </Card>
-            </Layout>
             : <Card style={styles.card}>
-                Joined room - created by {room.created_by}
+                signed_up with uid {CurrentUser.uid}
             </Card>
     );
 }
